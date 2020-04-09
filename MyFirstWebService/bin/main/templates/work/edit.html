@@ -1,0 +1,84 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title th:text="${title}">Starter Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="starter-template.css"  th:href="@{/css/starter-template.css}" rel="stylesheet">
+  </head>
+
+  <body>
+
+	<div th:replace="~{block/header::headerA}"></div>
+    <main role="main" class="container">
+
+      <div class="starter-template">
+        <h1 th:text="${title}">Bootstrap starter template</h1>
+        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+      </div>
+
+<form id="upload_form" enctype="multipart/form-data" method="post"  th:action="@{/work/update}" th:object="${workForm}">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="work_name">工事名</label>
+      <input type="text" name="work_name" class="form-control" placeholder="工事名"id="work_name" th:value="*{work_name}">
+      <div class="text-danger mb-4" th:if="${#fields.hasErrors('work_name')}" th:errors="*{work_name}"></div>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="number">工事番号</label>
+      <input type="text" name="number" class="form-control" placeholder="工事番号" id="number" th:value="*{number}">
+      <div class="text-danger mb-4" th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></div>
+    </div>
+  <div class="form-group col-md-4">
+    <label for="money">契約金額</label>
+      <input type="text" name="money" class="form-control" placeholder="契約金額" id="money" th:value="*{money}">
+      <div class="text-danger mb-4" th:if="${#fields.hasErrors('money')}" th:errors="*{money}"></div>
+  </div>
+</div>
+  <div class="form-row">
+  <div class="form-group col-md-6">
+    <label for="gd_name">現場代理人名</label>
+      <input type="text" name="gd_name" class="form-control" placeholder="現場代理人名" id="gd_name" th:value="*{gd_name}">
+      <div class="text-danger mb-4" th:if="${#fields.hasErrors('gd_name')}" th:errors="*{gd_name}"></div>
+  </div>
+    <div class="form-group col-md-6">
+    <label for="sg_name">主任技術者名</label>
+      <input type="text" name="sg_name" class="form-control" placeholder="主任技術者名" id="sg_name" th:value="*{sg_name}">
+      <div class="text-danger mb-4" th:if="${#fields.hasErrors('sg_name')}" th:errors="*{sg_name}"></div>
+  </div>
+  </div>
+   <div class="form-group">
+    <label for="contents">工事内容</label>
+    <textarea class="form-control"  name="contents" id="contents" rows="8" placeholder="工事内容" th:field="*{contents}"></textarea>
+    <div class="text-danger mb-4" th:if="${#fields.hasErrors('contents')}" th:errors="*{contents}"></div>
+  </div>
+  
+    <div class="form-group">
+      <label>■ファイルパス：</label>
+      <input form="upload_form" id="filename" name="filename" type="file" th:field="*{filename}" multiple/> <!-- required=""  --> 
+     </div>
+      <input type="hidden" name="id" th:value="*{id}">
+  <button type="submit" class="btn btn-primary">登録</button>
+</form>
+
+    </main><!-- /.container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="@{/js/jquery-slim.min.js}"><\/script>')</script>
+    <script src="../../assets/js/vendor/popper.min.js"  th:src="@{/js/popper.min.js}"></script>
+    <script src="../../dist/js/bootstrap.min.js"  th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/data_upload_view.js}"></script>
+  </body>
+</html>
